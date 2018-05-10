@@ -1,1 +1,0 @@
-zero\x00byte
