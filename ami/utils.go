@@ -4,20 +4,15 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"os"
 	"strings"
+
+	crand "crypto/rand"
 )
 
-// GetUUID returns a new UUID based on /dev/urandom (unix).
+// GetUUID returns a new UUID based on OS
 func GetUUID() (string, error) {
-	f, err := os.Open("/dev/urandom")
-	if err != nil {
-		return "", fmt.Errorf("open /dev/urandom error:[%v]", err)
-	}
-	defer f.Close()
 	b := make([]byte, 16)
-
-	_, err = f.Read(b)
+	_, err := crand.Read(b)
 	if err != nil {
 		return "", err
 	}
