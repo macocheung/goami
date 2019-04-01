@@ -90,10 +90,15 @@ func requestList(client Client, action, id, event, complete string, v ...interfa
 		}
 		e := rsp.Get("Event")
 		r := rsp.Get("Response")
-		if e == event {
-			response = append(response, rsp)
-		} else if e == complete || r != "" && r != "Success" {
-			break
+		eID := rsp.Get("ActionID")
+
+		// Suppose the request action id should be equals to response action
+		if eID == id {
+			if e == event {
+				response = append(response, rsp)
+			} else if e == complete || r != "" && r != "Success" {
+				break
+			}
 		}
 	}
 	return response, nil
