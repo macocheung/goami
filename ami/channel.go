@@ -114,6 +114,8 @@ func Status(client Client, actionID, channel, variables string) ([]Response, err
 		"Channel":   channel,
 		"Variables": variables,
 	})
+	// ee
+
 }
 
 // AGI add an AGI command to execute by Async AGI.
