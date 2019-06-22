@@ -110,11 +110,14 @@ func Setvar(client Client, actionID, channel, variable, value string) (Response,
 // Status lists channel status.
 // Will return the status information of each channel along with the value for the specified channel variables.
 func Status(client Client, actionID, channel, variables string) ([]Response, error) {
-	return requestList(client, "Status", actionID, "Status", "StatusComplete", map[string]string{
+	/*return requestList(client, "Status", actionID, "StatusEvent", "StatusCompleteEvent", map[string]string{
+		"Channel":   channel,
+		"Variables": variables,
+	})*/
+	return send(client, "Status", actionID, map[string]string{
 		"Channel":   channel,
 		"Variables": variables,
 	})
-	// ee
 
 }
 
